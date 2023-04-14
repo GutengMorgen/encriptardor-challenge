@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Encriptador</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <label for="txt_encriptar">TEXTO PARA ENCRIPTAR:</label><br>
+    <textarea class="EncryptBox" id="txt_encriptar" placeholder="Escribe aqui el texto para encriptar."></textarea>
+    <p></p>
+    <button id="encriptar">Encriptador</button>
+    <button id="Paste">Paste</button>
+    <p></p>
+    <label for="txt_encriptado">TEXTO ENCRIPTADO:</label><br>
+
+    <table id="mytable">
+      <table>
+        <thead>
+          <tr>
+            <th>Encripted</th>
+            <th>copy</th>
+            <th>watch</th>
+          </tr>
+        </thead>
+        <tbody id="mytbody">
+          <tr>
+            <th align="left">
+              <textarea class="EncryptedBox" id="txt_encriptado" placeholder="Aqui se mostrara el texto encriptado."></textarea>
+            </th>
+            <th>
+              <button id="copyBt">Copy</button>
+            </th>
+            <th>
+              <button class="hiddenBt" id="desencriptar">-</button>
+            </th>
+          </tr>
+        </tbody>
+      
+    </table>
+    <script src="script.js"></script>
+  </body>
+</html>

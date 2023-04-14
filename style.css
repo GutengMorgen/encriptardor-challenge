@@ -1,0 +1,38 @@
+#for_buttons
+{
+    padding: 10px;
+    border: 1px solid green;
+}
+
+.EncryptBox
+{
+    height: 100px;
+    width: 350px;
+    background-color: whitesmoke;
+    resize: none;
+}
+
+.EncryptedBox
+{
+    height: 25px;
+    width: 400px;
+    background-color: whitesmoke;
+    resize: none;
+}
+
+.hiddenBt
+{
+    width: 35px;
+}
+
+table
+{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th
+{
+    border: 1px solid black;
+    padding: 5px;
+}
