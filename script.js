@@ -1,64 +1,60 @@
-const mybutton = document.getElementById("encriptar");
-const myOtherButton = document.getElementById("desencriptar");
-const txt_encriptar = document.getElementById("txt_encriptar");
-const txt_encriptado = document.getElementById("txt_encriptado");
-const table = document.getElementById("mytable");
-const tbody = document.getElementById("mytbody");
+const encriptar = document.getElementById("encriptar"); //boton predeterminado
+const desencriptar = document.getElementById("desencriptar"); //boton de la 3 celda de la primera fila de la tabla
+const txt_encriptar = document.getElementById("txt_encriptar"); //textarea predeterminado
+const txt_encriptado = document.getElementById("txt_encriptado"); //textarea de la 1 celda de la primera fila de la tabla
+const tbody = document.getElementById("mytbody"); //fila de la tabla predeterminado
 
+encriptar.addEventListener("click", MyEncryptor);   //evento
+desencriptar.addEventListener("click", SwitchMode); //evento
 
-mybutton.addEventListener("click", fefe);
-
-myOtherButton.addEventListener("click", another);
-
-/*function modific(text)
-{
-    let cadena = text.split('');
-    let ecec = '';
-    for (let i = cadena.length - 1; i >= 0; i--) 
-    {
-        console.log(cadena[i])
-        ecec += cadena[i];
-    }
-    txt_encriptado.value = ecec;
-}*/
-
-let change1 = "";
-let change2 = "";
+let change1 = '', change2 = '';
+let condition = false;
 
 function newRow()
 {
     //para insertar una fila en la tabla
     const row = tbody.insertRow(0);
 
-    const cell_box = row.insertCell();
-    const cell_copy = row.insertCell();
-    const cell_hidden = row.insertCell();
-
-    cell_box.setAttribute("id", "2-1");
-    cell_copy.setAttribute("id", "2-2");
-    cell_hidden.setAttribute("id", "2-3");
-
+    for (let i = 0; i < 3; i++)
+    {
+        row.insertCell();
+    }
+    
     const textarea = document.createElement("textarea");
-    const copyBt = document.createElement("button");
-    const hidden = document.createElement("button");
-
     textarea.setAttribute("class", "EncryptedBox");
+
+    const copyBt = document.createElement("button");
     copyBt.innerHTML = "Copy";
+
+    const hidden = document.createElement("button");
     hidden.setAttribute("class", "hiddenBt");
     hidden.innerHTML = "-";
-
-    // document.getElementById("2-1").appendChild(textarea);
-    // document.getElementById("2-2").appendChild(copyBt);
-    // document.getElementById("2-3").appendChild(hidden);
+    hidden.addEventListener("click", SwitchMode)
 
     row.cells[0].appendChild(textarea);
     row.cells[1].appendChild(copyBt);
     row.cells[2].appendChild(hidden);
 }
 
-function fefe()
+//tal vez no sea necesario crear una lista solo  usar un array para que encuentre la primera fila
+//luego que encuentre y modifique la cell[0] o cell[1] o cell[2]
+
+function MyEncryptor()
 {
     newRow();
+    const firstRow = tbody.rows[0];
+    const cell0 = firstRow.cells[0];
+    const cell1 = firstRow.cells[1];
+    const cell2 = firstRow.cells[2];
+
+    // if(cell0 == null || cell1 == null || cell2 == null)
+    //     return console.log("No se encontro la celda");
+
+    const mytxt = cell0.querySelector("textarea");
+    const mycopy = cell1.querySelector("button");
+    const mydesen = cell2.querySelector("button");
+    console.log(mytxt, mycopy, mydesen);
+
     let start = txt_encriptar.value;
     start = start.replaceAll(/e/g, "enter")
                  .replaceAll(/i/g, "imes")
@@ -66,11 +62,10 @@ function fefe()
                  .replaceAll(/a/g, "ai")
                  .replaceAll(/u/g, "ufat");
     change1 = start;
-    txt_encriptado.value = start;
+    mytxt.value = start;
 }
 
-
-function dede()
+function MyDecryptor()
 {
     let end = txt_encriptado.value;
     end = end.replaceAll(/enter/g, "e")
@@ -79,39 +74,23 @@ function dede()
              .replaceAll(/ai/g, "a")
              .replaceAll(/ufat/g, "u");
     change2 = end;
-    // txt_encriptar.value = end;
 }
 
-let condition = false;
-
-function another()
+function SwitchMode()
 {
-    dede();
+    MyDecryptor();
     if(condition)
     {
-        myOtherButton.innerHTML = "-";
+        desencriptar.innerHTML = "-";
         txt_encriptado.value = change1;
         condition = false;
     }
     else
     {
-        myOtherButton.innerHTML = "o";
+        desencriptar.innerHTML = "o";
         txt_encriptado.value = change2;
         condition = true;
     }
-    /*myOtherButton.innerHTML = "o";
-    let count = 0;
-    if (myOtherButton.innerHTML === "-")
-    {
-        myOtherButton.innerHTML = "o";
-        count++;
-    }
-    if (count == 1)
-    {
-        myOtherButton.innerHTML = "-";
-        count = 0;
-    }*/
-
 }
 
 //agregar una funcion para que cuando se presione el boton encriptador, se agrege una fila nueva en la tabla
