@@ -4,21 +4,31 @@ const txt_encriptar = document.getElementById("txt_encriptar"); //textarea prede
 const txt_encriptado = document.getElementById("txt_encriptado"); //textarea de la 1 celda de la primera fila de la tabla
 const tbody = document.getElementById("mytbody"); //fila de la tabla predeterminado
 
-encriptar.addEventListener("click", MyEncryptor);   //evento
-desencriptar.addEventListener("click", SwitchMode); //evento
+encriptar.addEventListener("click", principal);   //evento
+desencriptar.addEventListener("click", end); //evento
 
-let change1 = '', change2 = '';
 let condition = false;
+
+function principal()
+{
+    newRow();
+    const firstRow = tbody.rows[0];
+    const txt = firstRow.cells[0].querySelector("textarea");
+
+    txt.value = MyEncryptor(txt_encriptar);
+}
+
+function end()
+{
+    SwitchMode();
+}
 
 function newRow()
 {
     //para insertar una fila en la tabla
     const row = tbody.insertRow(0);
     
-    for (let i = 0; i < 3; i++)
-    {
-        row.insertCell();
-    }
+    for (let i = 0; i < 3; i++) {row.insertCell(); }
     
     const textarea = document.createElement("textarea");
     textarea.setAttribute("class", "EncryptedBox");
@@ -36,70 +46,48 @@ function newRow()
     row.cells[2].appendChild(hidden);
 }
 
-//tal vez no sea necesario crear una lista solo  usar un array para que encuentre la primera fila
-//luego que encuentre y modifique la cell[0] o cell[1] o cell[2]
-
-function MyEncryptor()
+function MyEncryptor(txt_for_encriptar)
 {
-    newRow();
-    const firstRow = tbody.rows[0];
-
-    const mytxt = firstRow.cells[0].querySelector("textarea");
-    const mycopy = firstRow.cells[1].querySelector("button");
-    const mydesen = firstRow.cells[2].querySelector("button");
-    // console.log(mytxt, mycopy, mydesen);
-
-    let start = txt_encriptar.value;
+    let start = txt_for_encriptar.value;
     start = start.replaceAll(/e/g, "enter")
                  .replaceAll(/i/g, "imes")
                  .replaceAll(/o/g, "ober")
                  .replaceAll(/a/g, "ai")
                  .replaceAll(/u/g, "ufat");
-    change1 = start;
-    mytxt.value = start;
+        
+    return start;
 }
 
-function MyDecryptor()
+function MyDescryptor(txt_for_encripted)
 {
-    const firstRow = tbody.rows[0];
-    const mytxt = firstRow.cells[0].querySelector("textarea");
-
-    let end = mytxt.value;
+    let end = txt_for_encripted.value;
     end = end.replaceAll(/enter/g, "e")
              .replaceAll(/imes/g, "i")
              .replaceAll(/ober/g, "o")
              .replaceAll(/ai/g, "a")
              .replaceAll(/ufat/g, "u");
-    change2 = end;
+
+    return end;
 }
 
 function SwitchMode(event)
 {
-    const firstRow = tbody.rows[0];
-    const mytxt = firstRow.cells[0].querySelector("textarea");
-    const mydesen = firstRow.cells[2].querySelector("button");
+    const thisboton = event.target;
+    const parentrow = (thisboton.parentNode).parentNode;
+    const findtxt = parentrow.cells[0].querySelector("textarea");
 
-    MyDecryptor();
-    if(condition)
+    if(condition) //se muestra el mensaje encriptado
     {
-        mydesen.innerHTML = "-";
-        mytxt.value = change1;
+        thisboton.innerHTML = "-";
+        findtxt.value = MyEncryptor(findtxt);
         condition = false;
     }
-    else
+    else //se muestra el mensaje desencriptado
     {
-        mydesen.innerHTML = "o";
-        mytxt.value = change2;
+        thisboton.innerHTML = "o";
+        findtxt.value = MyDescryptor(findtxt);
         condition = true;
     }
-
-    let thisboton = event.target;
-    let parentcell = thisboton.parentNode;
-    let parentrow = parentcell.parentNode;
-    let findtxt = parentrow.cells[0].querySelector("textarea");
-    console.log(findtxt, thisboton);
 }
 
-//agregar una funcion para que cuando se presione el boton encriptador, se agrege una fila nueva en la tabla
 //hacer un boton para eliminar todas las filas de la tabla
-//
