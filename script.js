@@ -14,7 +14,7 @@ function newRow()
 {
     //para insertar una fila en la tabla
     const row = tbody.insertRow(0);
-
+    
     for (let i = 0; i < 3; i++)
     {
         row.insertCell();
@@ -43,17 +43,11 @@ function MyEncryptor()
 {
     newRow();
     const firstRow = tbody.rows[0];
-    const cell0 = firstRow.cells[0];
-    const cell1 = firstRow.cells[1];
-    const cell2 = firstRow.cells[2];
 
-    // if(cell0 == null || cell1 == null || cell2 == null)
-    //     return console.log("No se encontro la celda");
-
-    const mytxt = cell0.querySelector("textarea");
-    const mycopy = cell1.querySelector("button");
-    const mydesen = cell2.querySelector("button");
-    console.log(mytxt, mycopy, mydesen);
+    const mytxt = firstRow.cells[0].querySelector("textarea");
+    const mycopy = firstRow.cells[1].querySelector("button");
+    const mydesen = firstRow.cells[2].querySelector("button");
+    // console.log(mytxt, mycopy, mydesen);
 
     let start = txt_encriptar.value;
     start = start.replaceAll(/e/g, "enter")
@@ -67,7 +61,10 @@ function MyEncryptor()
 
 function MyDecryptor()
 {
-    let end = txt_encriptado.value;
+    const firstRow = tbody.rows[0];
+    const mytxt = firstRow.cells[0].querySelector("textarea");
+
+    let end = mytxt.value;
     end = end.replaceAll(/enter/g, "e")
              .replaceAll(/imes/g, "i")
              .replaceAll(/ober/g, "o")
@@ -76,21 +73,31 @@ function MyDecryptor()
     change2 = end;
 }
 
-function SwitchMode()
+function SwitchMode(event)
 {
+    const firstRow = tbody.rows[0];
+    const mytxt = firstRow.cells[0].querySelector("textarea");
+    const mydesen = firstRow.cells[2].querySelector("button");
+
     MyDecryptor();
     if(condition)
     {
-        desencriptar.innerHTML = "-";
-        txt_encriptado.value = change1;
+        mydesen.innerHTML = "-";
+        mytxt.value = change1;
         condition = false;
     }
     else
     {
-        desencriptar.innerHTML = "o";
-        txt_encriptado.value = change2;
+        mydesen.innerHTML = "o";
+        mytxt.value = change2;
         condition = true;
     }
+
+    let thisboton = event.target;
+    let parentcell = thisboton.parentNode;
+    let parentrow = parentcell.parentNode;
+    let findtxt = parentrow.cells[0].querySelector("textarea");
+    console.log(findtxt, thisboton);
 }
 
 //agregar una funcion para que cuando se presione el boton encriptador, se agrege una fila nueva en la tabla
