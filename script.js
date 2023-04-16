@@ -1,8 +1,28 @@
 const encriptar = document.getElementById("encriptar"); //boton predeterminado
 const txt_encriptar = document.getElementById("txt_encriptar"); //textarea predeterminado
 const tbody = document.getElementById("mytbody"); //fila de la tabla predeterminado
+const cleanbt = document.getElementById("clean all");
+const pastebt = document.getElementById("Paste");
+
+const dictionary = {
+    "e" : "enter",
+    "i" : "imes",
+    "o" : "ober",
+    "a" : "ai",
+    "u" : "ufat"
+}
 
 encriptar.addEventListener("click", principal);   //evento
+
+cleanbt.addEventListener("click", () => {
+    while (tbody.rows.length > 0) {
+        tbody.deleteRow(0);
+    }
+});
+
+pastebt.addEventListener("click", () => {
+    navigator.clipboard.readText().then(pasteText => {txt_encriptar.value = pasteText; });
+});
 
 function principal()
 {
@@ -10,7 +30,7 @@ function principal()
     const firstRow = tbody.rows[0];
     const txt = firstRow.cells[0].querySelector("textarea");
 
-    txt.value = MyEncryptor(txt_encriptar);
+    txt.value = MyChiper(txt_encriptar.value);
 }
 
 function newRow()
@@ -25,6 +45,7 @@ function newRow()
 
     const copyBt = document.createElement("button");
     copyBt.innerHTML = "Copy";
+    copyBt.addEventListener("click", forCopy);
 
     const hidden = document.createElement("button");
     hidden.setAttribute("class", "hiddenBt");
@@ -36,60 +57,26 @@ function newRow()
     row.cells[2].appendChild(hidden);
 }
 
-const encriptionDic = {
-    "e" : "enter",
-    "i" : "imes",
-    "o" : "ober",
-    "a" : "ai",
-    "u" : "ufat"
+function forCopy() {
+    navigator.clipboard.writeText(this.parentNode.parentNode.cells[0].querySelector("textarea").value).then(() => {});
 }
 
-const desencriptionDic = {
-    "enter": "e",
-    "imes": "i",
-    "ober": "o",
-    "ai": "a",
-    "ufat": "u"
-}
-
-function MyEncryptor(txt_for_encript)
+function MyChiper(text, mode = "encrypt")
 {
-    let getvalue = txt_for_encript.value;
-    for (const [key, value] of Object.entries(encriptionDic))
+    const dict = mode === "encrypt" ? dictionary : Object.entries(dictionary).reduce((acc, [key, value]) => 
     {
-        getvalue = getvalue.replaceAll(new RegExp(key, 'g'), value);
-    }
-    return getvalue;
+        acc[value] = key;
+        return acc;
+    }, {});
+
+    const regex = new RegExp(Object.keys(dict).join("|"), "g");
+    return text.replace(regex, match => dict[match]);
 }
 
-function MyDescryptor(txt_for_desencript)
+function SwitchMode()
 {
-    let getvalue = txt_for_desencript.value;
-    for (const [key, value] of Object.entries(desencriptionDic))
-    {
-        getvalue = getvalue.replaceAll(new RegExp(key, 'g'), value);
-    }
-    return getvalue;
+    const findtxt = this.parentNode.parentNode.cells[0].querySelector("textarea");
+    
+    this.innerHTML = this.innerHTML === "-" ? "o" : "-";
+    findtxt.value = this.innerHTML === "-" ? MyChiper(findtxt.value) : MyChiper(findtxt.value, "decrypt");
 }
-
-function SwitchMode(event)
-{
-    const thisboton = event.target;
-    const parentrow = (thisboton.parentNode).parentNode;
-    const findtxt = parentrow.cells[0].querySelector("textarea");
-
-    if(thisboton.innerHTML == "-")
-    {
-        thisboton.innerHTML = "o";
-        findtxt.value = MyDescryptor(findtxt);
-    }
-    else if(thisboton.innerHTML == "o")
-    {
-        thisboton.innerHTML = "-";
-        findtxt.value = MyEncryptor(findtxt);
-    }
-}
-
-//hacer un boton para eliminar todas las filas de la tabla
-//optmizar el cifrado y descrifrado usando diccionarios
-//mejorar el estilo
