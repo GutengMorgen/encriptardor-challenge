@@ -1,11 +1,8 @@
 const encriptar = document.getElementById("encriptar"); //boton predeterminado
-const desencriptar = document.getElementById("desencriptar"); //boton de la 3 celda de la primera fila de la tabla
 const txt_encriptar = document.getElementById("txt_encriptar"); //textarea predeterminado
-const txt_encriptado = document.getElementById("txt_encriptado"); //textarea de la 1 celda de la primera fila de la tabla
 const tbody = document.getElementById("mytbody"); //fila de la tabla predeterminado
 
 encriptar.addEventListener("click", principal);   //evento
-desencriptar.addEventListener("click", end); //evento
 
 let condition = false;
 
@@ -76,18 +73,37 @@ function SwitchMode(event)
     const parentrow = (thisboton.parentNode).parentNode;
     const findtxt = parentrow.cells[0].querySelector("textarea");
 
-    if(condition) //se muestra el mensaje encriptado
+    //se produce el bug porque cuando porque la condicion es "global" y la condition esta enlaza si es falso se ejecuta una cosa y si es verdad se ejecuta otra cosa
+    //la condition debe ser separada para reparar el bug 
+    //o creo que se debe agregar un evento nuevo para que cuando el usuario este fuera del boton se cambie automaticamente (-) --> (o) y viseversa
+    /*if(condition == true) //se muestra el mensaje encriptado
     {
         thisboton.innerHTML = "-";
         findtxt.value = MyEncryptor(findtxt);
         condition = false;
     }
+
     else //se muestra el mensaje desencriptado
     {
         thisboton.innerHTML = "o";
         findtxt.value = MyDescryptor(findtxt);
         condition = true;
+    }*/
+
+    if(thisboton.innerHTML == "-")
+    {
+        thisboton.innerHTML = "o";
+        findtxt.value = MyDescryptor(findtxt);
+        console.log("inner = o");
+    }
+    else if(thisboton.innerHTML == "o")
+    {
+        thisboton.innerHTML = "-";
+        findtxt.value = MyEncryptor(findtxt);
+        console.log("inner = -");
     }
 }
 
 //hacer un boton para eliminar todas las filas de la tabla
+//optmizar el cifrado y descrifrado usando diccionarios
+//mejorar el estilo
