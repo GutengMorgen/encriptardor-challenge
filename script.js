@@ -4,8 +4,6 @@ const tbody = document.getElementById("mytbody"); //fila de la tabla predetermin
 
 encriptar.addEventListener("click", principal);   //evento
 
-let condition = false;
-
 function principal()
 {
     newRow();
@@ -13,11 +11,6 @@ function principal()
     const txt = firstRow.cells[0].querySelector("textarea");
 
     txt.value = MyEncryptor(txt_encriptar);
-}
-
-function end()
-{
-    SwitchMode();
 }
 
 function newRow()
@@ -43,28 +36,40 @@ function newRow()
     row.cells[2].appendChild(hidden);
 }
 
-function MyEncryptor(txt_for_encriptar)
-{
-    let start = txt_for_encriptar.value;
-    start = start.replaceAll(/e/g, "enter")
-                 .replaceAll(/i/g, "imes")
-                 .replaceAll(/o/g, "ober")
-                 .replaceAll(/a/g, "ai")
-                 .replaceAll(/u/g, "ufat");
-        
-    return start;
+const encriptionDic = {
+    "e" : "enter",
+    "i" : "imes",
+    "o" : "ober",
+    "a" : "ai",
+    "u" : "ufat"
 }
 
-function MyDescryptor(txt_for_encripted)
-{
-    let end = txt_for_encripted.value;
-    end = end.replaceAll(/enter/g, "e")
-             .replaceAll(/imes/g, "i")
-             .replaceAll(/ober/g, "o")
-             .replaceAll(/ai/g, "a")
-             .replaceAll(/ufat/g, "u");
+const desencriptionDic = {
+    "enter": "e",
+    "imes": "i",
+    "ober": "o",
+    "ai": "a",
+    "ufat": "u"
+}
 
-    return end;
+function MyEncryptor(txt_for_encript)
+{
+    let getvalue = txt_for_encript.value;
+    for (const [key, value] of Object.entries(encriptionDic))
+    {
+        getvalue = getvalue.replaceAll(new RegExp(key, 'g'), value);
+    }
+    return getvalue;
+}
+
+function MyDescryptor(txt_for_desencript)
+{
+    let getvalue = txt_for_desencript.value;
+    for (const [key, value] of Object.entries(desencriptionDic))
+    {
+        getvalue = getvalue.replaceAll(new RegExp(key, 'g'), value);
+    }
+    return getvalue;
 }
 
 function SwitchMode(event)
@@ -73,34 +78,15 @@ function SwitchMode(event)
     const parentrow = (thisboton.parentNode).parentNode;
     const findtxt = parentrow.cells[0].querySelector("textarea");
 
-    //se produce el bug porque cuando porque la condicion es "global" y la condition esta enlaza si es falso se ejecuta una cosa y si es verdad se ejecuta otra cosa
-    //la condition debe ser separada para reparar el bug 
-    //o creo que se debe agregar un evento nuevo para que cuando el usuario este fuera del boton se cambie automaticamente (-) --> (o) y viseversa
-    /*if(condition == true) //se muestra el mensaje encriptado
-    {
-        thisboton.innerHTML = "-";
-        findtxt.value = MyEncryptor(findtxt);
-        condition = false;
-    }
-
-    else //se muestra el mensaje desencriptado
-    {
-        thisboton.innerHTML = "o";
-        findtxt.value = MyDescryptor(findtxt);
-        condition = true;
-    }*/
-
     if(thisboton.innerHTML == "-")
     {
         thisboton.innerHTML = "o";
         findtxt.value = MyDescryptor(findtxt);
-        console.log("inner = o");
     }
     else if(thisboton.innerHTML == "o")
     {
         thisboton.innerHTML = "-";
         findtxt.value = MyEncryptor(findtxt);
-        console.log("inner = -");
     }
 }
 
