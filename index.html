@@ -6,13 +6,20 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <label for="txt_encriptar">TEXTO PARA ENCRIPTAR:</label><br>
-    <textarea class="EncryptBox" id="txt_encriptar" placeholder="Escribe aqui el texto para encriptar."></textarea>
-    <p></p>
+    <div class="contenedor">
+      <div class="element1">
+        <textarea id="txt_encriptar" rows="10" cols="30" placeholder="Escribe aqui el texto para encriptar."></textarea>
+      </div>
+      <div class="blank_space"></div>
+      <div class="element2">
+        <textarea id="txt_encriptado" rows="10" cols="30" placeholder="Aqui se mostrara el texto encriptado"></textarea>
+      </div>
+    </div>
+
     <button id="encriptar">Encriptador</button>
     <button id="Paste">Paste</button>
     <p></p>
-    <label for="txt_encriptado">TEXTO ENCRIPTADO:</label>
+    <label for="historial">HISTORIAL:</label>
     <button id="clean all">clean all</button><br>
 
     <table id="mytable">
