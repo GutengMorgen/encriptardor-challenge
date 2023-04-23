@@ -1,5 +1,6 @@
 const encriptar = document.getElementById("Encrypt_Bt"); //boton predeterminado
-const txt_encriptar = document.getElementById("element1"); //textarea predeterminado
+const txt_input = document.getElementById("element1"); //textarea predeterminado
+const txt_output = document.getElementById("element2");
 const tbody = document.getElementById("mytbody"); //fila de la tabla predeterminado
 const pastebt = document.getElementById("Paste");
 
@@ -11,11 +12,32 @@ const dictionary = {
     "u" : "ufat"
 }
 
-encriptar.addEventListener("click", principal);   //evento
+encriptar.addEventListener("click", testing);   //evento
 
 pastebt.addEventListener("click", () => {
-    navigator.clipboard.readText().then(pasteText => {txt_encriptar.value = pasteText; });
+    navigator.clipboard.readText().then(pasteText => {txt_input.value = pasteText; });
 });
+
+
+function testing()
+{
+    // if (txt_input.value.trim() === "" || txt_input.value === null)
+    // {
+    //     return alert("The text input is empty!");
+    // }
+
+    if (txt_output.value !== "")
+    {
+        // console.log("the textOutput is not empty, here is the text: ", txt_output.value);
+        newRow();
+        const firstRow = tbody.rows[0];
+        const txt = firstRow.cells[0].querySelector("textarea");
+
+        txt.value = txt_output.value;
+    }
+
+    txt_output.value = MyChiper(txt_input.value);
+}
 
 function principal()
 {
@@ -23,7 +45,7 @@ function principal()
     const firstRow = tbody.rows[0];
     const txt = firstRow.cells[0].querySelector("textarea");
 
-    txt.value = MyChiper(txt_encriptar.value);
+    txt.value = MyChiper(txt_input.value);
 }
 
 function newRow()
@@ -71,8 +93,6 @@ function SwitchMode()
 {
     const findtxt = this.parentNode.parentNode.cells[0].querySelector("textarea");
     
-    // this.innerHTML = this.innerHTML === "-" ? "o" : "-";
-    // this.innerHTML = this.innerHTML === "&#xf653;" ? "&#xe8f4;" : "&#xf653;";
     this.innerHTML = this.innerHTML === "Lock" ? "Visibility" : "Lock";
     findtxt.value = this.innerHTML === "Lock" ? MyChiper(findtxt.value) : MyChiper(findtxt.value, "decrypt");
 }
