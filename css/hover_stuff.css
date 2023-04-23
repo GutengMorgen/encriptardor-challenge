@@ -1,0 +1,63 @@
+* button:hover
+{
+    box-shadow: 0px 8px 12px 0px rgba(0, 0, 0, 0.3);
+}
+
+* button:active
+{
+    transform: translateY(2px);
+}
+
+.testing select:hover
+{
+    background-color: whitesmoke;
+}
+
+::-webkit-scrollbar-thumb:hover
+{
+    background-color: #565656;
+}
+
+.danes::after
+{
+    content: '';
+    background-color: rgba(231, 239, 255, 0.6);
+    border-radius: 4px;
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    opacity: 0;
+    padding: 45% 50%;
+    margin: -45% -50%;
+    transition: all 0.4s;
+}
+
+.danes:active::after
+{
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s;
+}
+
+#Encrypt_Bt::after
+{
+    content: '';
+    background-color: rgba(231, 239, 255, 0.6);
+    border-radius: 11px;
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    opacity: 0;
+    padding: 23.5% 50%;
+    margin: -23.5% -50%;
+    transition: all 0.4s;
+}
+
+#Encrypt_Bt:active::after
+{
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s;
+}

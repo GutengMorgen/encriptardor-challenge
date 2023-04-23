@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mi pagina web</title>
+        <link rel="stylesheet" href="css/otherstyle.css">
+        <link rel="stylesheet" href="css/hover_stuff.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    </head>
+    <body>
+        <header>
+            <h1>ENCRIPTADOR</h1>
+        </header>
+        <main>
+            <div class="container">
+
+                <!-- textarea 1 -->
+                <div class="item1">
+                    <label for="element1"></label>
+                    <form class="testing" action="#">
+                        <select name="mode" id="lang">
+                            <option value="select mode" disabled>Select a mode</option>
+                            <option value="encrypt" selected>Encriptar</option>
+                            <option value="decrypt">Desencriptar</option>
+                        </select>
+                    </form>
+                    <div class="bt-conteiner">
+                        <button type="button" class="danes" id="Paste">
+                            <span class="material-symbols-rounded">content_paste</span>
+                        </button>
+                    </div>
+                    <textarea id="element1" rows="12" placeholder="hola mundo"></textarea>
+                </div>
+
+                <!-- textarea 2 -->
+                <div class="item2">
+                    <div id="stablement"></div>
+                    <label for="element2" id="mylabel">&nbsp;</label>
+                    <div class="bt-conteiner">
+                        <button type="button" class="danes">
+                            <span class="material-symbols-rounded">content_copy</span>
+                        </button>
+                    </div>
+                    <textarea disabled id="element2" rows="12" placeholder="hoberlai mufatndober"></textarea>
+                </div>
+
+                <!-- button para encriptar -->
+                <div class="item3">
+                    <button type="button" id="Encrypt_Bt">Encriptar</button>
+                </div>
+
+                <!-- for the table -->
+                <table class="item4">
+                    <thead>
+                        <tr>
+                            <th>Historial</th>
+                            <th>Option</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mytbody">
+                        <tr>
+                            <td>
+                                <textarea disabled>historial 1</textarea>
+                            </td>
+                            <td>
+                                <button class="danes">
+                                    <span class="material-symbols-rounded">visibility_lock</span>
+                                </button>
+                                <button class="danes">
+                                    <span class="material-symbols-rounded">content_copy</span>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        <script src="script copy.js"></script>
+        <footer>
+            <!-- <p>Derechos de autor © 2023 - Cómo crear una página web</p> -->
+        </footer>
+    </body>
+</html>
+
+<!--
+<span class="material-symbols-rounded">
+lock_open
+</span> -->
