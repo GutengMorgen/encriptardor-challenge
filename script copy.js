@@ -1,8 +1,10 @@
-const encriptar = document.getElementById("Encrypt_Bt"); //boton predeterminado
-const txt_input = document.getElementById("element1"); //textarea predeterminado
+const encriptar = document.getElementById("Encrypt_Bt");    //boton predeterminado
+const txt_input = document.getElementById("element1");      //textarea predeterminado
 const txt_output = document.getElementById("element2");
-const tbody = document.getElementById("mytbody"); //fila de la tabla predeterminado
+const tbody = document.getElementById("mytbody");           //fila de la tabla predeterminado
 const pastebt = document.getElementById("Paste");
+const copybt = document.getElementById("Copy");
+const mySelect = document.getElementById("lang");
 
 const dictionary = {
     "e" : "enter",
@@ -13,40 +15,61 @@ const dictionary = {
 }
 
 encriptar.addEventListener("click", testing);   //evento
+copybt.addEventListener("click", () => {
+    navigator.clipboard.writeText(txt_output.value).then(() => {});
+});
 
 pastebt.addEventListener("click", () => {
     navigator.clipboard.readText().then(pasteText => {txt_input.value = pasteText; });
 });
 
 
+
+
+mySelect.onchange = function()
+{
+    if (mySelect.value == "encrypt")
+    {
+        txt_input.setAttribute("placeholder", "encriptar texto");
+        txt_output.setAttribute("placeholder", "enterncrimesptair tenterxtober");
+        encriptar.innerHTML = "Encriptar";
+    }
+    else if (mySelect.value == "decrypt")
+    {
+        txt_input.setAttribute("placeholder", "tenterxtober enterncrimesptaidober");
+        txt_output.setAttribute("placeholder", "texto encriptado");
+        encriptar.innerHTML = "Desencriptar";
+    }
+}
+
 function testing()
 {
-    // if (txt_input.value.trim() === "" || txt_input.value === null)
-    // {
-    //     return alert("The text input is empty!");
-    // }
+    if (txt_input.value.trim() === "" || txt_input.value === null)
+    {
+        return alert("The text input is empty!");
+    }
 
-    if (txt_output.value !== "")
+    else if (txt_output.value !== "")
     {
         // console.log("the textOutput is not empty, here is the text: ", txt_output.value);
         newRow();
         const firstRow = tbody.rows[0];
         const txt = firstRow.cells[0].querySelector("textarea");
-
         txt.value = txt_output.value;
     }
 
-    txt_output.value = MyChiper(txt_input.value);
+    if (encriptar.innerHTML == "Encriptar")
+    {
+        txt_output.value = MyChiper(txt_input.value);
+    }
+    else if (encriptar.innerHTML == "Desencriptar")
+    {
+        txt_output.value = MyChiper(txt_input.value, "decrypt");
+    }
 }
 
-function principal()
-{
-    newRow();
-    const firstRow = tbody.rows[0];
-    const txt = firstRow.cells[0].querySelector("textarea");
 
-    txt.value = MyChiper(txt_input.value);
-}
+
 
 function newRow()
 {
