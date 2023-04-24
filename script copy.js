@@ -44,20 +44,23 @@ mySelect.onchange = function()
 
 function testing()
 {
+    //para comprobar si el valor del txt_input esta vacio o nulo
     if (txt_input.value.trim() === "" || txt_input.value === null)
     {
         return alert("The text input is empty!");
     }
 
+    //comprueba si el valor del txt_output no esta vacio, de ser asi agrega un row a la tabla con ese valor
     else if (txt_output.value !== "")
     {
-        // console.log("the textOutput is not empty, here is the text: ", txt_output.value);
+        console.log("the textOutput is not empty, here is the text: ", txt_output.value);
         newRow();
         const firstRow = tbody.rows[0];
         const txt = firstRow.cells[0].querySelector("textarea");
         txt.value = txt_output.value;
     }
 
+    //comprueba que texto tiene el boton para encriptar o desencriptar
     if (encriptar.innerHTML == "Encriptar")
     {
         txt_output.value = MyChiper(txt_input.value);
@@ -66,8 +69,13 @@ function testing()
     {
         txt_output.value = MyChiper(txt_input.value, "decrypt");
     }
-}
 
+    //para eliminar el row predeterminado de la tabla
+    if (tbody.rows.length > 1 && document.getElementById("emptyMessage") !== null)
+    {
+        document.getElementById("emptyMessage").remove();
+    }
+}
 
 
 

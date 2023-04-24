@@ -35,6 +35,7 @@ header, footer
 .container
 {
     display: grid;
+    overflow: hidden;
     grid-template-columns: auto auto;
     gap: 15px;
     grid-template-areas: 
@@ -86,7 +87,6 @@ header, footer
     right: 0;
     width: 55px; /* espacio para la scrollbar -  default: 64*/
     height: 45px;
-    /* es tamaño del texto esta jodiendo la posicion */
 }
 
 .bt-conteiner button
@@ -107,6 +107,7 @@ header, footer
     font-family: fantasy;
     padding: 0.5em;
     font-size: 2.2em;
+    margin-right: 3.5px;
 }
 
 /* --------------------FOR INTEM 4-------------------- */
@@ -152,6 +153,31 @@ td textarea
     color: #112D4E;
     background-color: #F9F7F7;
     border: none;
+}
+
+#message td
+{
+    border: none;
+}
+
+td div
+{
+    /* background-color: green; */
+    height: 5em;
+    line-height: 5em;
+    position: relative;
+    text-align: center;
+}
+
+td div span
+{
+    /* background-color: #003f5c; */
+    line-height: normal;
+    display: inline-block;
+    vertical-align: middle;
+    color: #8996a3;
+    font-size: 2em;
+    font-family: monospace;
 }
 
 /* --------------------FOR SCROLLBARs-------------------- */
