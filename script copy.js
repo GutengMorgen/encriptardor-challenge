@@ -14,11 +14,18 @@ const dictionary = {
     "u" : "ufat"
 }
 
-encriptar.addEventListener("click", testing);   //evento
+//envento para encriptar el texto
+encriptar.addEventListener("click", testing);
+
+//evento para el boton de copiar texto
 copybt.addEventListener("click", () => {
     navigator.clipboard.writeText(txt_output.value).then(() => {});
+
+    // changeContent(copybt);
+    // console.log(copybt);
 });
 
+//evento para el boton de pegar texto
 pastebt.addEventListener("click", () => {
     navigator.clipboard.readText().then(pasteText => {txt_input.value = pasteText; });
 });
@@ -30,21 +37,21 @@ mySelect.onchange = function()
 {
     if (mySelect.value == "encrypt")
     {
-        txt_input.setAttribute("placeholder", "encriptar texto");
-        txt_output.setAttribute("placeholder", "enterncrimesptair tenterxtober");
+        txt_input.setAttribute("placeholder", "challenge one");
+        txt_output.setAttribute("placeholder", "chaillenterngenter obernenter");
         encriptar.innerHTML = "Encriptar";
     }
     else if (mySelect.value == "decrypt")
     {
-        txt_input.setAttribute("placeholder", "tenterxtober enterncrimesptaidober");
-        txt_output.setAttribute("placeholder", "texto encriptado");
+        txt_input.setAttribute("placeholder", "chaillenterngenter obernenter");
+        txt_output.setAttribute("placeholder", "challenge one");
         encriptar.innerHTML = "Desencriptar";
     }
 }
 
 function testing()
 {
-    //para comprobar si el valor del txt_input esta vacio o nulo
+    //para comprobar si el valor del txt_input esta vacio o nuloS
     if (txt_input.value.trim() === "" || txt_input.value === null)
     {
         return alert("The text input is empty!");
@@ -80,7 +87,7 @@ function testing()
         document.getElementById("emptyMessage").remove();
     }
 
-    //agrega y elimina una clase css que modifica el box-shadow del txt_output
+    //agrega y elimina una clase css que modifica el box-shaSdow del txt_output
     txt_output.classList.add("highlight");
     setTimeout(() => {
         txt_output.classList.remove("highlight");
@@ -116,6 +123,18 @@ function newRow()
 
 function forCopy() {
     navigator.clipboard.writeText(this.parentNode.parentNode.cells[0].querySelector("textarea").value).then(() => {});
+
+    changeContent(this);
+}
+
+function changeContent(bt)
+{
+    bt.innerHTML = '';
+    bt.classList.add("done");
+    setTimeout(() => {
+        bt.classList.remove("done");
+        bt.innerHTML = "Content_Copy";
+    }, 2000);
 }
 
 function MyChiper(text, mode = "encrypt")

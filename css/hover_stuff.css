@@ -18,6 +18,14 @@
     background-color: #565656;
 }
 
+
+.danes.done::before
+{
+    content: 'Done';
+    color: rgb(206, 255, 133);
+}
+
+
 .danes::after
 {
     content: '';

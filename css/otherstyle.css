@@ -120,6 +120,19 @@ header, footer
     margin-right: 3.5px;
 }
 
+.item3 span
+{
+    vertical-align: middle;
+    font-size: 20px;
+    color: #8996a3;
+}
+
+.item3 span:nth-child(2)
+{
+    font-size: 11px;
+    color: #8996a3;
+}
+
 /* --------------------FOR INTEM 4-------------------- */
 table
 {
@@ -185,7 +198,7 @@ td div span
     line-height: normal;
     display: inline-block;
     vertical-align: middle;
-    color: #8996a3;
+    color: #a1aab4;
     font-size: 2em;
     font-family: monospace;
 }
@@ -214,7 +227,7 @@ textarea::-webkit-scrollbar
     border-radius: 4px;
 }
 
-/* --------------------FOR myelemets-------------------- */
+/* --------------------FOR Select-------------------- */
 
 .testing
 {
@@ -228,7 +241,7 @@ textarea::-webkit-scrollbar
 {
     border: none;
     border-radius: 0.3em;
-    padding: 5px;
+    padding: 3px;
     outline: 0;
 }
 
