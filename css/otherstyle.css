@@ -67,6 +67,8 @@ header, footer
     padding: 5px;
 }
 
+/* --------------------FOR INTEM 1-2-------------------- */
+
 .item1 textarea, .item2 textarea
 {
     width: 100%;
@@ -77,6 +79,8 @@ header, footer
     padding: 10px;
     resize: none;
     box-sizing: border-box;
+    transition: background-color 0.4s cubic-bezier(0, 0, 0, 1.1); /*cubic-bezier(0, 0, 0.4, 0.65);*/
+    transition: box-shadow 0.4s ease-in-out;
 }
 
 .bt-conteiner
@@ -94,6 +98,12 @@ header, footer
     position: absolute;
     bottom: 0;
     left: 0;
+}
+
+.highlight
+{
+    /* background-color: rgb(40, 160, 93, 0.2) !important; */
+    box-shadow: inset 0px -20px 0px 0px rgb(40, 160, 93, 0.8);
 }
 
 /* --------------------FOR INTEM 3-------------------- */
@@ -218,7 +228,7 @@ textarea::-webkit-scrollbar
 {
     border: none;
     border-radius: 0.3em;
-    padding: 3px;
+    padding: 5px;
     outline: 0;
 }
 

@@ -60,14 +60,18 @@ function testing()
         txt.value = txt_output.value;
     }
 
+    //convierte el texto del txt_input a minusculas y quita los acentos
+    let newtext = txt_input.value.toLowerCase();
+    newtext = newtext.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
     //comprueba que texto tiene el boton para encriptar o desencriptar
     if (encriptar.innerHTML == "Encriptar")
     {
-        txt_output.value = MyChiper(txt_input.value);
+        txt_output.value = MyChiper(newtext);
     }
     else if (encriptar.innerHTML == "Desencriptar")
     {
-        txt_output.value = MyChiper(txt_input.value, "decrypt");
+        txt_output.value = MyChiper(newtext, "decrypt");
     }
 
     //para eliminar el row predeterminado de la tabla
@@ -75,6 +79,12 @@ function testing()
     {
         document.getElementById("emptyMessage").remove();
     }
+
+    //agrega y elimina una clase css que modifica el box-shadow del txt_output
+    txt_output.classList.add("highlight");
+    setTimeout(() => {
+        txt_output.classList.remove("highlight");
+    }, 1000);
 }
 
 
