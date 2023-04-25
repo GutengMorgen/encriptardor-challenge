@@ -1,25 +1,16 @@
-const span = document.getElementById('myspan');
+const app = document.getElementById('app');
 const txt = 'Se convertirán las todas mayúsculas a minúsculas y se eliminarán las tildes.';
 const txt2 = 'se convertiran las todas mayusculas a minusculas y se eliminaran las tildes.';
 
-function typeWriter(str, i = 0)
-{
-    if(typeof str === 'string')
-    {
-        if(i < str.length)
-        {
-            span.innerHTML += str.charAt(i);
-            i++;
-            setTimeout(() => typeWriter(str, i), 60);
-        }
-        else
-        {
-            setTimeout(() => {
-                span.innerHTML = '';
-                typeWriter(str == txt ? txt2 : txt);
-            }, 3000);
-        }
-    }
-}
+let typewriter = new Typewriter(app, {
+    loop: true,
+    delay: 60,
+});
 
-typeWriter(txt);
+typewriter.typeString(txt)
+    .pauseFor(2000)
+    .deleteAll()
+    .typeString(txt2)
+    .pauseFor(2000)
+    .deleteAll()
+    .start();

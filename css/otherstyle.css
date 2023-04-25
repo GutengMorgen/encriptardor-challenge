@@ -108,17 +108,18 @@ header
     margin-right: 3.5px;
 }
 
-.item3 span
+.item3 #info
 {
     vertical-align: middle;
     font-size: 20px;
     color: rgba(137, 150, 163, .5);
 }
 
-.item3 span:nth-child(2)
+#app > span
 {
     font-size: 11px;
     color: rgba(137, 150, 163, .5);
+    vertical-align: middle;
     user-select: text;
 }
 
