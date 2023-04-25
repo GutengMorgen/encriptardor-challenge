@@ -22,7 +22,11 @@
 .danes.done::before
 {
     content: 'Done';
-    color: rgb(206, 255, 133);
+    background-color: green;
+    border-radius: 7px;
+    opacity: 1;
+    padding: 7% 25%;
+    margin: -45% -50%;
 }
 
 
