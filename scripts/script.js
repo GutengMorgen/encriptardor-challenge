@@ -54,7 +54,7 @@ mySelect.onchange = function()
 
 function testing()
 {
-    //para comprobar si el valor del txt_input esta vacio o nuloS
+    //comprobar si el valor del txt_input esta vacio o nulos
     if (txt_input.value.trim() === "" || txt_input.value === null)
         return alert("The text input is empty!");
     

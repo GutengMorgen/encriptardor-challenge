@@ -6,35 +6,36 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-        <link rel="stylesheet" href="css/otherstyle.css">
+        <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/hover_stuff.css">
     </head>
     <body>
         <header>
             <h1 id="myH1">ENCRIPTADOR</h1>
+            <button id="toggle_theme" class="material-symbols-rounded" onclick="toggle(this)">&#xe518;</button>
         </header>
         <main>
             <div class="container">
+                <!---------------------- select ---------------------->
+                <div class="item0">
+                    <select id="lang">
+                        <option value="select mode" disabled>Select a mode</option>
+                        <option value="encrypt" selected>Encriptar</option>
+                        <option value="decrypt">Desencriptar</option>
+                    </select>
+                </div>
 
                 <!---------------------- textarea 1 ---------------------->
                 <div class="item1">
                     <label for="element1"></label>
-                    <div class="testing">
-                        <select id="lang">
-                            <option value="select mode" disabled>Select a mode</option>
-                            <option value="encrypt" selected>Encriptar</option>
-                            <option value="decrypt">Desencriptar</option>
-                        </select>
-                    </div>
-                    <button class="bt-conteiner material-symbols-rounded danes" id="Paste">content_paste</button>
+                    <button class="bt-conteiner material-symbols-rounded danes" id="Paste">&#xe14f;</button>
                     <textarea id="element1" rows="12" placeholder="challenge one"></textarea>
                 </div>
 
                 <!---------------------- textarea 2 ---------------------->
                 <div class="item2">
-                    <div id="stablement"></div>
-                    <label for="element2" id="mylabel">&nbsp;</label>
-                    <button class="bt-conteiner material-symbols-rounded danes" id="Copy">content_copy</button>
+                    <label for="element2" id="mylabel"></label>
+                    <button class="bt-conteiner material-symbols-rounded danes" id="Copy">&#xe14d;</button>
                     <textarea disabled id="element2" rows="12" placeholder="chaillenterngenter obernenter"></textarea>
                 </div>
 
@@ -42,7 +43,7 @@
                 <div class="item3">
                     <button id="Encrypt_Bt">Encriptar</button>
                     <p>
-                        <span class="material-symbols-rounded" id="info">info</span>
+                        <span id="info" class="material-symbols-rounded">info</span>
                         <span id="app"></span>
                     </p>
                 </div>
@@ -66,5 +67,6 @@
         <script src="scripts/script.js"></script>
         <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
         <script src="scripts/typeWriter.js"></script>
+        <script src="scripts/toggle Mode.js"></script>
     </body>
 </html>
